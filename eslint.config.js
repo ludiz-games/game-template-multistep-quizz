@@ -5,6 +5,4 @@ const compat = new FlatCompat({
 });
 
 /** @type {import("eslint").Linter.Config[]} */
-export default [
-  ...compat.extends("next/core-web-vitals"),
-];
+export default [...compat.extends("next/core-web-vitals")];
