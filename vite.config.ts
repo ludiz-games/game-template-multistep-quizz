@@ -12,9 +12,11 @@ export default defineConfig({
   },
   server: {
     port: 3003,
-    host: true,
-    allowedHosts: true,
+    host: "0.0.0.0",
     strictPort: false,
+    hmr: {
+      port: 3003,
+    },
   },
   base: "/",
   esbuild: {
