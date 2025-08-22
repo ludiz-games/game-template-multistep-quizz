@@ -295,17 +295,17 @@ const DEMO_DEFINITION = {
 // Determine Colyseus server URL based on environment
 const getColyseusUrl = () => {
   // Check if we're running in an E2B sandbox
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
-    
+
     // E2B sandbox URLs follow the pattern: {port}-{sandboxId}.e2b.app
-    if (hostname.includes('.e2b.app')) {
+    if (hostname.includes(".e2b.app")) {
       // Replace the port in the hostname with 2567 for Colyseus
-      const sandboxId = hostname.split('-').slice(1).join('-'); // Get everything after first dash
+      const sandboxId = hostname.split("-").slice(1).join("-"); // Get everything after first dash
       return `wss://2567-${sandboxId}`;
     }
   }
-  
+
   // Default to localhost for local development
   return "ws://localhost:2567";
 };
