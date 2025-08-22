@@ -15,7 +15,7 @@ export default defineConfig(({ command }) => ({
     host: "0.0.0.0",
     strictPort: false,
     // Allow all hosts for E2B sandbox compatibility
-    allowedHosts: "all",
+    allowedHosts: true,
     hmr: {
       port: 3003,
       // Use the actual sandbox host for HMR WebSocket connections
