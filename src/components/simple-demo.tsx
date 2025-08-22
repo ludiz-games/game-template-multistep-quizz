@@ -292,13 +292,31 @@ const DEMO_DEFINITION = {
   },
 };
 
+// Determine Colyseus server URL based on environment
+const getColyseusUrl = () => {
+  // Check if we're running in an E2B sandbox
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    
+    // E2B sandbox URLs follow the pattern: {port}-{sandboxId}.e2b.app
+    if (hostname.includes('.e2b.app')) {
+      // Replace the port in the hostname with 2567 for Colyseus
+      const sandboxId = hostname.split('-').slice(1).join('-'); // Get everything after first dash
+      return `wss://2567-${sandboxId}`;
+    }
+  }
+  
+  // Default to localhost for local development
+  return "ws://localhost:2567";
+};
+
 // Initialize colyseus hooks
 const {
   connectToColyseus,
   disconnectFromColyseus,
   useColyseusRoom,
   useColyseusState,
-} = colyseus<DemoState>("ws://localhost:2567");
+} = colyseus<DemoState>(getColyseusUrl());
 
 export function SimpleDemo() {
   const [playerName, setPlayerName] = useState("Player");
@@ -628,7 +646,7 @@ export function SimpleDemo() {
                   </Badge>
                   <h2 className="text-2xl font-bold">Great job!</h2>
                   <p className="text-muted-foreground">
-                    You've completed all 4 questions.
+                    You&apos;ve completed all 4 questions.
                   </p>
                 </div>
                 <Separator />
