@@ -21,10 +21,6 @@ export default defineConfig(({ command }) => ({
     },
   },
   base: "/",
-  define: {
-    // Help Vite understand the proxy environment
-    __VITE_IS_PROXIED__: "true",
-  },
   esbuild: {
     tsconfigRaw: {
       compilerOptions: {
